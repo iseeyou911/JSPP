@@ -1,0 +1,4 @@
+rootPath:'/tes-office/'
+restServiceUrl:'http://192.168.1.205/travel-ext-services/'
+birtServerUrl:'http://192.168.1.205/travel-ext-services/'
+reportServerUrl:'http://192.168.1.205/tes-report/'

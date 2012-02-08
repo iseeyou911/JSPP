@@ -1,0 +1,604 @@
+@import "lib/ru/vtsft/tes/ui/resources/Growl.css";
+@import "lib/ru/vtsft/tes/ui/resources/Filter.css";
+@import "lib/ru/vtsft/tes/ui/resources/ItemList.css";
+
+body, html {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    font-family: Arial, sans-serif !important;
+    font-size: 14px !important;
+}
+
+.dijitInputInner {
+    font-family: Arial, sans-serif !important;
+    font-size: 14px !important;
+}
+
+#PageManager {
+    height: 100%;
+    width: 100%;
+}
+
+.page {
+    height: 100%;
+    width: 100%;
+    float: left;
+}
+
+.dijitReset {
+    line-height: normal;
+}
+
+/*
+* Button Style
+*/
+
+.dijitButton, .dijitDropDownButton {
+    font-size: 12px !important;
+}
+
+.dijitButtonNode {
+    border-radius: 3px;
+}
+
+.dijitDialogTitleBar {
+    cursor: default;
+    padding: 10px 10px !important;
+    background: #F8F8F8 !important;
+    color: #333 !important;
+    font-weight: bold;
+    font-size: 16px;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+    background: -webkit-linear-gradient(white, #F8F8F8) !important;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#ffffff', endColorstr = '#F8F8F8', GradientType = 0);
+}
+
+.dijitDialogPaneButtons {
+    padding: 5px 10px;
+    background-color: whiteSmoke;
+    border-top: 1px solid #fff;
+}
+
+.dijitDialogPaneContent {
+    border-bottom: 1px solid #DDD;
+    color: #333333;
+}
+
+.dijitDialogPaneButtons .primary .dijitButtonNode, .tesButton .primary .dijitButtonNode, .tesComboBox.primary.dijitTextBox, .tesButton.primary .dijitButtonNode {
+    color: #fff;
+    background-color: #0064cd !important;
+    background-repeat: repeat-x !important;
+    background-image: -khtml-gradient(linear, left top, left bottom, from(#049cdb), to(#0064cd)) !important;
+    background-image: -moz-linear-gradient(top, #049cdb, #0064cd) !important;
+    background-image: -ms-linear-gradient(top, #049cdb, #0064cd) !important;
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #049cdb), color-stop(100%, #0064cd)) !important;
+    background-image: -webkit-linear-gradient(top, #049cdb, #0064cd) !important;
+    background-image: -o-linear-gradient(top, #049cdb, #0064cd) !important;
+    background-image: linear-gradient(top, #049cdb, #0064cd) !important;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#049cdb', endColorstr = '#0064cd', GradientType = 0) !important;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25) !important;
+    border-color: #0064cd #0064cd #003f81 !important;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25) !important;
+    color: white !important;
+}
+.dijitDialogPaneButtons .success .dijitButtonNode, .tesButton .success .dijitButtonNode, .tesComboBox.success.dijitTextBox, .tesButton.success .dijitButtonNode,
+.success .dijitButtonNode {
+    background-color: #57A957 !important;
+    background-repeat: repeat-x !important;
+    background-image: -khtml-gradient(linear, left top, left bottom, from(#62c462), to(#57a957)) !important;
+    background-image: -moz-linear-gradient(top, #62c462, #57a957) !important;
+    background-image: -ms-linear-gradient(top, #62c462, #57a957) !important;
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #62c462), color-stop(100%, #57a957)) !important;
+    background-image: -webkit-linear-gradient(top, #62c462, #57a957) !important;
+    background-image: -o-linear-gradient(top, #62c462, #57a957) !important;
+    background-image: linear-gradient(top, #62c462, #57a957) !important;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#62c462', endColorstr='#57a957', GradientType=0) !important;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25) !important;
+    border-color: #57A957 #57A957 #3D773D !important;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25) !important;
+    color: white !important;
+}
+
+.tundra .dijitDialogPaneButtons .dijitButtonNode,
+.tundra .tesButton .dijitButtonNode,
+.tundra .dijitDialogPaneButtons .dijitButtonNode dijitButtonHover,
+.tundra .tesButton .dijitButtonNode dijitButtonHover{
+    cursor: pointer;
+    display: inline-block;
+    background-color: #e6e6e6;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), color-stop(25%, #ffffff), to(#e6e6e6));
+    background-image: -webkit-linear-gradient(#ffffff, #ffffff 25%, #e6e6e6);
+    background-image: -moz-linear-gradient(top, #ffffff, #ffffff 25%, #e6e6e6);
+    background-image: -ms-linear-gradient(#ffffff, #ffffff 25%, #e6e6e6);
+    background-image: -o-linear-gradient(#ffffff, #ffffff 25%, #e6e6e6);
+    background-image: linear-gradient(#ffffff, #ffffff 25%, #e6e6e6);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#ffffff', endColorstr = '#e6e6e6', GradientType = 0);
+    padding: 5px 14px 6px;
+    margin-left: 5px;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+    color: #333;
+    font-size: 13px;
+    line-height: normal;
+    border: 1px solid #ccc;
+    border-bottom-color: #bbb;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+    -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+    -webkit-transition: 0.1s linear all;
+    -moz-transition: 0.1s linear all;
+    transition: 0.1s linear all;
+    font-weight: normal !important;
+}
+
+.smallButton .dijitButtonNode {
+    padding: 3px 3px 3px !important;
+}
+
+.middleButton .dijitButtonNode {
+    padding: 5px 5px 5px !important;
+}
+
+dijitTooltipContainer .dijitDialogPaneButtons {
+    border-bottom: 1px solid #DDD;
+}
+
+.dijitDialogPaneButtons .dijitButtonNode:hover, .tesButton .dijitButtonNode:hover, .filterButton.dijitDropDownButton:hover {
+    background-position: 0 -10px !important;
+    color: #333;
+    text-decoration: none;
+    border: 1px solid #ccc;
+    border-bottom-color: #bbb;
+}
+
+.dijitButtonDisabled  .dijitButtonNode:hover {
+    background-position: 0 0 !important;
+    cursor: default !important;
+}
+
+.dijitButtonDisabled  .dijitButtonNode:active {
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+    -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+}
+
+.dijitDialogPaneButtons .primary .dijitButtonNode:hover, .tesButton .primary .dijitButtonNode:hover {
+    color: #fff;
+}
+
+.dijitDialogPaneButtons .dijitButtonNode:active,
+.tesButton .dijitButtonNode:active,
+.dijitToggleButtonChecked  .dijitButtonNode {
+    -webkit-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.25), 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+    -moz-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.25), 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.25), 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+}
+
+.dj_ie8 .dijitDialogPaneButtons .dijitButtonNode:active,
+.dj_ie8 .tesButton .dijitButtonNode:active,
+.dj_ie8 .dijitToggleButtonChecked  .dijitButtonNode {
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#e6e6e6', endColorstr = '#ffffff', GradientType = 0);
+}
+
+.dj_ie8 .dijitDialogPaneButtons .success .dijitButtonNode:active,
+.dj_ie8 .tesButton  .success .dijitButtonNode:active,
+.dj_ie8 .dijitToggleButtonChecked  .success .dijitButtonNode {
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#57a957', endColorstr='#62c462', GradientType=0) !important;
+}
+
+.dj_ie8 .dijitDialogPaneButtons .primary .dijitButtonNode:active,
+.dj_ie8 .tesButton .primary  .dijitButtonNode:active,
+.dj_ie8 .dijitToggleButtonChecked .primary  .dijitButtonNode {
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#0064cd', endColorstr = '#049cdb', GradientType = 0) !important;
+}
+
+/**
+* ButtonSet style
+*/
+
+.tesButtonSet {
+    -webkit-box-shadow: 0 0 6px #ccc;
+    -moz-box-shadow: 0 0 6px #ccc;
+    box-shadow: 0 0 6px #ccc;
+
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+
+    margin: 0;
+    padding: 0;
+
+    font-weight: normal;
+}
+
+.smallButton AND .tesButtonSet  {
+    font-size: 13px !important;
+}
+
+.tesButtonSet .rightButton  .dijitButtonNode, .tesButtonSet .rightButton {
+    -webkit-border-radius: 0 4px 4px 0 !important;
+    -moz-border-radius: 0 4px 4px 0 !important;
+    border-radius: 0 4px 4px 0 !important;
+    margin: 0 !important;
+    height: 100%;
+}
+
+.tesButtonSet  .leftButton .dijitButtonNode, .tesButtonSet  .leftButton {
+    -webkit-border-radius: 4px 0 0 4px !important;
+    -moz-border-radius: 4px 0 0 4px !important;
+    border-radius: 4px 0 0 4px !important;
+    margin: 0 !important;
+}
+
+.tesButtonSet .centerButton .dijitButtonNode, .tesButtonSet .centerButton {
+    -webkit-border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
+    border-radius: 0 !important;
+    margin: 0 !important;
+}
+
+.tesButtonSetText {
+    cursor: default;
+    display: inline-block;
+    background-color: #e6e6e6 !important;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#e6e6e6), color-stop(25%, #e6e6e6), to(#ffffff)) !important;
+    background-image: -webkit-linear-gradient(#e6e6e6, #e6e6e6 25%, #ffffff) !important;
+    background-image: -moz-linear-gradient(top, #e6e6e6, #e6e6e6 25%, #ffffff) !important;
+    background-image: -ms-linear-gradient(#e6e6e6, #e6e6e6 25%, #ffffff) !important;
+    background-image: -o-linear-gradient(#e6e6e6, #e6e6e6 25%, #ffffff) !important;
+    background-image: linear-gradient(#e6e6e6, #e6e6e6 25%, #e6e6e6) !important;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#e6e6e6', endColorstr = '#ffffff', GradientType = 0) !important;
+    padding: 6px 14px 7px;
+    margin-left: 5px;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+    color: #666;
+    font-size: 13px;
+    line-height: normal;
+    border: 1px solid #ccc;
+    border-bottom-color: #bbb;
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+    -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.dijitDialogUnderlay {
+
+    background-image: -webkit-radial-gradient(center, rgba(127, 127, 127, 0.496094), rgba(127, 127, 127, 0.496094) 35%, rgba(0, 0, 0, 0.699219));
+    background-image: -moz-linear-gradient(center, rgba(127, 127, 127, 0.496094), rgba(127, 127, 127, 0.496094) 35%, rgba(0, 0, 0, 0.699219)) !important;
+
+    filter: progid:DXImageTransform.Microsoft.Alpha(opacity = 50);
+}
+
+.dijitDialog {
+    border: 1px solid #999 !important;
+    -webkit-box-shadow: 0px 5px 80px #505050 !important;
+    -moz-box-shadow: 0px 5px 80px #505050 !important;
+    box-shadow: 0px 5px 80px #505050 !important;
+}
+
+.Edited td, .dojoxGridRowOver.Edited td {
+    background: url(resources/images/rowBackgroundEdited.png) #fffea8 0 100% repeat-x !important;
+    color: #4d4c34 !important;
+}
+
+.dojoxGridRowOver td, .dojoxGridRowOver {
+    background-color: inherit !important;
+    color: #484848 !important;
+}
+
+.dojoxGridRow {
+    background: url(resources/images/rowBackground.png) #F8F8F8 0 100% repeat-x !important;
+    color: #484848 !important;
+
+}
+
+.dojoxGridHeader th {
+    border-bottom: 1px solid #ddd !important;
+    border-right: 1px solid #ddd !important;
+}
+
+.dojoxGridRow td {
+    border-bottom: 1px solid #E1E1E1 !important;
+    border-right: 1px solid #E1E1E1 !important;
+    white-space: nowrap !important;
+}
+
+.dojoxGridRow td:hover {
+    border-left: 1px solid #E1E1E1 !important;
+    border-top: 1px solid #E1E1E1 !important;
+
+}
+
+.dojoxGridRowOdd {
+    background: url(resources/images/rowBackgroundOdd.png) #fcfcfc 0 100% repeat-x !important;
+    color: #484848 !important;
+    border-bottom: 1px solid #E1E1E1;
+}
+
+.tundra .dojoxGridRowbar {
+    text-align: center;
+    background: url(resources/images/rowBackground.png) #F8F8F8 0 100% repeat-x !important;
+}
+
+.tundra .dojoxGridRowSelected {
+    background-color: #F8F8F8 !important;
+}
+
+.tundra .dojoxGridRowSelected .dojoxGridRowOdd {
+    background-color: #fcfcfc !important;
+}
+
+.dojoxGridRowSelected.Edited td {
+    background: url(resources/images/rowBackgroundSelectedEdited.png) #ffff85 0 100% repeat-x !important;
+}
+
+.dojoxGridRowSelected td {
+    background: url(resources/images/rowBackgroundSelected.png) #ebf1fc 0 100% repeat-x !important;
+}
+
+.tundra .dojoxGridHeader .dojoxGridCell {
+    color: #333 !important;
+    background: url(resources/images/rowHeaderBackground.png) #f5f5f5 0 100% repeat-x !important;
+}
+
+.tundra .dojoxGridHeader .dojoxGridCellOver {
+    background: url(resources/images/rowBackgroundSelected.png) #ebf1fc 0 100% repeat-x !important;
+}
+
+.tundra .dojoxGridHeader .dojoxGridCellFocus {
+    background: url(resources/images/rowBackgroundSelected.png) #ebf1fc 0 100% repeat-x !important;
+}
+
+.dojoxGridIsNeedFetch {
+    background-color: #fff !important;
+
+}
+
+.dojoxGridIsNeedFetch > .dojoxGridCell {
+    border: none !important;
+}
+
+.dijitTooltipDialog .dijitTooltipContainer {
+    padding: 0 !important;
+}
+
+.TooltipDialogContent {
+    border-top: 1px solid #DDD;
+    border-bottom: 1px solid #DDD;
+    padding: 10px;
+    clear: both;
+}
+
+.dijitDialogTitleBar input {
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.NotSupport {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+
+    vertical-align: middle;
+    font-size: 30px;
+    font-family: Arial !important;
+    text-shadow: 0px 1px 1px #ccc;
+}
+
+.SubText {
+    font-size: 14px;
+}
+
+a {
+    color: #484848 !important;
+}
+
+#app_nav {
+    background-color: #222;
+    background-repeat: repeat-x;
+    background-image: -khtml-gradient(linear, left top, left bottom, from(#444444), to(#222222));
+    background-image: -moz-linear-gradient(top, #444444, #222222);
+    background-image: -ms-linear-gradient(top, #444444, #222222);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #444444), color-stop(100%, #222222));
+    background-image: -webkit-linear-gradient(top, #444444, #222222);
+    background-image: -o-linear-gradient(top, #444444, #222222);
+    background-image: linear-gradient(top, #444444, #222222);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#444444', endColorstr = '#222222', GradientType = 0);
+    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+    height: 40px;
+    z-index: 2;
+    position: relative;
+}
+
+#app_nav > .container > h3 {
+    float: left;
+    color: #fff;
+    text-shadow: 1px 0px 2px #111;
+    margin: 8px 0 0 20px !important;
+    display: block;
+    background: url("resources/images/alfa.png") no-repeat;
+    width: 120px;
+    height: 40px;
+}
+
+#app_nav > .container {
+    width: 100%;
+    height: 100%;
+    margin: 0px 10px;
+}
+
+#app_nav_menu {
+    display: block;
+    float: left;
+    margin: 0 0 0 30px;
+    list-style-type: none;
+    height: 40px;
+    overflow: hidden;
+    border-left: 1px solid #000;
+    padding: 0;
+}
+
+
+.PageLoader {
+    text-align: center;
+    width: 100%;
+    vertical-align: middle;
+    float: left;
+    position: relative;
+    top: 46%;
+    padding-bottom: 30px;
+    font-size: 40px;
+    text-shadow: 0 1px 1px #333;
+    color: #222;
+    background: url(resources/images/30.gif) no-repeat 50% 100%;
+
+}
+
+#UserForm {
+    float: right;
+    font-size: 14px;
+    margin-right: 20px;
+    height: 100%;
+}
+
+#UserForm > .dijitDropDownButton > .dijitButtonNode {
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    font-size: 14px!important;
+    cursor: pointer;
+    padding: 12px 10px;
+    float: left;
+    color: #ccc;
+    text-shadow: 0 1px 1px rgba(100, 100, 100, 0.75);
+    background: none;
+}
+
+
+.dj_ie8 #UserForm > .dijitDropDownButton >   .dijitButtonNode:hover, .dj_ie8 #UserForm  > .opened >  .dijitButtonNode {
+    padding: 12px 10px 10px 10px;
+}
+
+#UserForm > .dijitDropDownButton > .dijitButtonNode:hover, #UserForm > .opened > .dijitButtonNode {
+
+    border-bottom: none !important;
+    background-color: #333333;
+    background-repeat: repeat-x;
+    background-image: -khtml-gradient(linear, left top, left bottom, from(#555555), to(#333333));
+    background-image: -moz-linear-gradient(top, #555555, #333333);
+    background-image: -ms-linear-gradient(top, #555555, #333333);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #555555), color-stop(100%, #333333));
+    background-image: -webkit-linear-gradient(top, #555555, #333333);
+    background-image: -o-linear-gradient(top, #555555, #333333);
+    background-image: linear-gradient(top, #555555, #333333);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#555555', endColorstr = '#333333', GradientType = 0);
+}
+
+#UserForm > .dijitDropDownButton {
+    border-left: 1px solid #000;
+    border-right: 1px solid #000;
+    margin: 0;
+}
+
+
+.tundra .dijitMenu {
+    padding: 5px 1px !important;
+
+    background: #fff;
+    color : #333 !important;
+    text-align: left;
+    border: 1px solid #ccc;
+
+    zoom: 1;
+
+    -webkit-box-shadow: 0 0 3px #ccc;
+    -moz-box-shadow: 0 0 3px #ccc;
+    box-shadow: 0 0 3px #ccc;
+}
+
+.tundra .dijitMenuItem td {
+    border: none;
+    padding:  3px 1px !important;
+}
+
+.tundra .dijitMenuItem {
+    color : #333;
+}
+
+.tundra .dijitMenuItemHover, .tundra .dijitMenuItemFocused, .tundra .dijitMenuItemSelected  {
+    background: #e9e8e8 !important;
+    color : #333 !important;
+}
+
+.font-small {
+    font-size: xx-small;
+}
+
+.tes-menu.hasDropDown {
+    border-top: none !important;
+    -webkit-box-shadow: 0 2px 3px #333333 !important;
+    -moz-box-shadow: 0 2px 3px #333333 !important;
+    box-shadow: 0 2px 3px #333333 !important;
+
+    border-radius: 0 0 6px 6px;
+    -moz-border-radius:  0 0 6px 6px;
+}
+
+.dj_ie8 .tes-menu {
+    margin-top: 0 !important;
+}
+
+.tes-menu {
+    margin: 0;
+    margin-top: -1px !important;
+    padding: 6px  0 !important;
+    
+    background: #333333;
+    text-align: left;
+    border: none;
+    zoom: 1;
+
+    list-style: none;
+
+    -webkit-box-shadow: 0 0 5px #333333;
+    -moz-box-shadow: 0 0 5px #333333;
+    box-shadow: 0 0 5px #333333;
+
+    color: #999;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+}
+
+.tes-menu-item {
+    padding: 5px 30px 5px 5px !important;
+    text-align: left;
+}
+
+.tes-menu-item-icon {
+    width: 15px;
+}
+
+
+.tes-menu-item:hover {
+    cursor: pointer;
+    background-color: #191919;
+    background-repeat: repeat-x;
+    background-image: -khtml-gradient(linear, left top, left bottom, from(#292929), to(#191919));
+    background-image: -moz-linear-gradient(top, #292929, #191919);
+    background-image: -ms-linear-gradient(top, #292929, #191919);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #292929), color-stop(100%, #191919));
+    background-image: -webkit-linear-gradient(top, #292929, #191919);
+    background-image: -o-linear-gradient(top, #292929, #191919);
+    background-image: linear-gradient(top, #292929, #191919);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#292929', endColorstr='#191919', GradientType=0);
+    color: white;
+}
