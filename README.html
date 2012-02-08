@@ -1,0 +1,151 @@
+<h4>Способ запуска</h4>
+
+Препроцессор представляет из себя обычный groovy скрипт, которому необходим один обязательный аргумент:
+
+<b>project.sourceDir</b> - путь к начальному каталогу, в котором будет происходить замена.
+
+а также можно указать два необязательных
+
+<b>project.confFile</b> - путь к файлу с глобальным конфигом.
+<b>project.excludeDir</b> - перечисленные через запятую имена папок, в которых не нужно осуществлять замену (тут, сразу скажу, что это имя папки самого нижнего уровня, путь к этой папке не учитывается, да минус, да постараюсь доработать).
+
+Для запуска по мимо стандартных средств можно использовать и maven. 
+
+<h4>Операции</h4>
+
+<b>Внимание атрибуты в операциях должны следовать в строгом порядке (порядок будет описан напротив команды ниже), но необязательные атрибуты (pattern, if, type) можно не использовать, ниже я помечу их ?.</b> В любой операции, кроме define, последним атрибутом может быть if=^condition^, где condition - условие, если оно записано в формате key=value, то операция выполнится если значение глобальной или локальной переменной с именем key совпадает с value, в другом случае операция выполнится, если существует глобальная или локальная переменная с именем condition.
+
+Далее я приведу полный набор операций и их использование в примерах, я не буду приводить примеры с <b>if </b>так как, как его использовать я описал выше.
+
+Открывающая и закрывающая управляющие конструкции должны быть на разных строчках, вставляемый/заменяемый текст должен быть между ними!
+
+<h5>Вставка (insert ?if)</h5>
+<h6>Примеры использования:</h6>
+
+<h6>html</h6>
+
+<source lang="html">
+
+<!--insert
+        <script type="text/javascript" src="vendors/release/dojo/dojo-mini.js" ></script>
+        <script type="text/javascript" src="vendors/release/dijit/dijit-mini.js" ></script>
+        <script type="text/javascript" src="vendors/release/dojox/dojox-mini.js" ></script>
+/insert-->
+
+</source >
+
+<h6>js</h6>
+
+<source lang="javascript">
+/*insert
+        var mode = 'dev'
+/insert*/
+</source >
+
+<h5>Замена (replace to ?pattern ?if)</h5>
+<b>to </b>- строка, на которую будет произведена замена  (поддерживает плэйсхолдеры)
+<b>pattern </b>- шаблон для замены подстроки
+
+<h6>Примеры</h6>
+
+<h6>html</h6>
+
+<source lang="html">
+<!--replace to=^<script type="text/javascript" src="vendors/release/dojox/dojox-mini.js" ></script>^-->
+<script type="text/javascript" src="vendors/release/dojox/dojox-mini.js" ></script>
+<!--/replace-->
+</source >
+
+Заменит все, что находится между управляющими комментариями, на значение атрибута <b>to</b>.
+
+<source lang="html">
+<!--replace to=^/release/^ pattern=^/dev/^-->
+        <link rel="stylesheet" type="text/css" href="vendors/dev/dijit/themes/tundra/tundra.css">
+        <link rel="stylesheet" type="text/css" href="vendors/dev/dojox/grid/resources/Grid.css">
+        <link rel="stylesheet" type="text/css" href="vendors/dev/dojox/image/resources/Lightbox.css">
+<!--/replace-->
+</source >
+
+Заменит все подстроки совпадающие с значением атрибута <b>pattern </b>на значение атрибута <b>to </b> в каждой строчке между комментариями.
+
+<h6>js</h6>
+
+<source lang="javascript">
+window.appVersion = /*replace to=^${project.version}^*/0.6/*\replace*/;
+</source >
+
+Заменит строку между управляющими комментариями на значение атрибута <b>to</b>.
+
+<source lang="javascript">
+/*replace to=^dojo^ pattern=^dijit^*/
+    dojo.require("dijit.layout.LayoutContainer");
+    dojo.require("dijit.layout.ContentPane");
+    dojo.require("dijit.form.TextBox");
+/*/replace*/
+</source >
+
+Заменит все подстроки совпадающие с значением атрибута pattern на значение атрибута <b>to </b>в каждой строчке между комментариями.
+
+<h5>Импорт файлов (import file ?type ?if)</h5>
+<b>file </b> - путь к файлу, лучше всего писать абсолютный (поддерживает плэйсхолдеры)
+<b>type </b>- тип файла, от этого зависит дополнительная обработка файла (на данный момент поддерживается тип css, при этом содержимое файла упаковывается в одну строку и обрамляется тегом style
+
+<h6>Примеры</h6>
+<h6>html</h6>
+
+<source lang="html">
+<!--define env=qa-->
+</source >
+
+<h6>js</h6>
+
+<source lang="javascript">
+//define debug=true
+//define env=qa
+</source >
+
+<h5>Локальные переменные (define key=value|key)</h5>
+Инициализация локальной переменной (область ее видимости текущий файл). Если указан только ключ, то будет создана, пустая переменная.
+<b>key </b>- имя переменной
+<b>value </b>- значение
+
+<h6>Примеры</h6>
+<h6>html</h6>
+
+<source lang="html">
+<!--define debug=true-->
+<!--define env=qa-->
+</source >
+
+<h6>js</h6>
+
+<source lang="javascript">
+//define debug=true
+//define env=qa
+</source >
+
+Отмечу, что локальные переменные инициализируются последовательно сверху вниз в том же прогоне парсинга файла, то есть если переменная определена в середине файла, то ее нельзя использовать в управляющих конструкциях выше.
+
+<h5>Глобальные переменные</h5>
+
+Препроцессору можно указать файл, в котором находятся глобальные переменные, которые можно использовать в операциях.
+
+Пример указания файла с переменными с помощью maven (можно использовать аргументы командной строки)
+
+<source lang="javascript">
+<project.confPath>${pom.basedir}/configuration/qa.json</project.confPath>
+</source>
+
+<h6>Формат файла</h6>
+
+key0:value0
+key1:value1
+
+<h5>Использование плэйсхолдеров</h5>
+
+<code>window.appVersion = /*replace to=^${version}^*/0.6/*/replace*/;</code>
+
+Выражение <b>${version}</b> будет заменено на значение соответствующей глобальной или локальной переменной переменной.
+
+Помимо этого есть поддержка операций над переменными, в данный момент реализована только одна - удаление кавычек с конца и начала значения переменной:
+${rootPath:<b>removeQuotes</b>}
