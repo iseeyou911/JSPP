@@ -142,10 +142,14 @@ replace  =  { line, patternO, ml, localParams ->
 	   }
 	   if (strReplace != null ) {
 		   def str = replacePlaceHolder(strReplace.trim(), localParams);
-
-		   result = matcher.replaceAll (str).trim()
+		   str = replacePlaceHolder(str, localParams);
+		   if (strPattern == null) {
+			   result = matcher.replaceAll (str).trim();
+		   } else {
+		   		result = str;
+		   }
 	   } else {
-		   result = matcher.replaceAll (oldText).trim()
+		   result = matcher.replaceAll (oldText).trim();
 	   }
 
 	   if (ml){
@@ -153,7 +157,7 @@ replace  =  { line, patternO, ml, localParams ->
 	   }
 
 	   if (strPattern != null || ml) {
-		   return [strPattern, result]
+		   return [strPattern !=null ? replacePlaceHolder(strPattern, localParams) : strPattern, result]
 	   } else {
 		   return result;
 	   }
@@ -338,7 +342,7 @@ editClos = {
 						} else {
 							if (Global.vars.state == "REPLACE_START") {
 								if(checkNextLine != null) {
-									result = line.replace(checkNextLine, replaceTo);
+									result = line.replaceAll(checkNextLine, replaceTo);
 								} else if (!stringWasReplaced){
 									result = replaceTo;
 									stringWasReplaced = true;
