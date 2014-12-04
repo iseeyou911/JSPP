@@ -1,0 +1,45 @@
+JSPP
+====
+
+JS|HTML Preprocessor (inserting, replacing, injecting files, global and local variable) on groovy! 
+
+JavaScript and HTML preprocessor, writen on Groovy.
+
+Сapabilities
+
+Inserting with or without condition
+Replasing with or without condition
+Injecting external files
+Defining local and global variabels
+
+Runing
+
+How to run groovy script you can found here http://groovy.codehaus.org , also you can use maven to run it, and integrate it to CI.
+Script process only files with following extention: js, json, html, xhtml.
+
+Require params (command line attributes)
+
+project.sourceDir - path to root dir with files to preprocess
+
+Optional params
+
+project.confFile - path to file with global variables
+
+
+Syntaxis
+
+All control constructions are written in comments, so it's no effects to work of files before processing. 
+All attributes must be in strongly order. You may to not specify optional params.
+
+Replacing (replace to ?pattern ?if)
+
+to - string to replace (to=^string^)
+pattern - regExp, if specify, then only matched substrings will be replaced (pattern=^regExp^)
+if - condition (if=^key=value^ or if=^key^) if key and value was specified then replacing will be perform if global or local variable key equals to value, or if specified only value, then  replacing will be perform if global or local variable key is exist
+
+Examples
+HTML
+
+<!--replace to=^${releaseFolder}^ pattern=^/dev/^-->
+        <link rel="stylesheet" type="text/css" href="vendors/dev/dijit/themes/tundra/tundra.css">
+<!--/replace-->
