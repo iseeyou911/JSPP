@@ -251,7 +251,7 @@ if (debug) {
   console.log(debug);
 }
 ```
-## Groovy version
+## Grunt version
 https://github.com/iseeyou911/barm
 
 ## Contributing
